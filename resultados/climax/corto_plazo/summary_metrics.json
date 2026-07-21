@@ -1,0 +1,7 @@
+{
+    "scenario": "corto_plazo",
+    "best_val_rmse": 0.29579947443857585,
+    "epochs_executed": 30,
+    "batch_size": 96,
+    "learning_rate": 1.0376741218161725e-05
+}

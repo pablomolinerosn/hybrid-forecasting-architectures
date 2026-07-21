@@ -1,0 +1,137 @@
+{
+  "corto": {
+    "horizon": 3,
+    "T_alineado": 6559,
+    "pares": {
+      "DCRNN-ClimaX": {
+        "T": 6559,
+        "dbar": -0.9002346840065693,
+        "dm_stat": -71.26039858036903,
+        "dm_sin_correccion": -71.28757044882812,
+        "p_value": 0.0,
+        "lags": 2,
+        "pesos": "rectangular",
+        "hln_factor": 0.9996188414293261,
+        "veredicto": "DCRNN mejor",
+        "mae_A": 0.6668466925621033,
+        "mae_B": 1.567081373881814
+      },
+      "DCRNN-SARIMA": {
+        "T": 6559,
+        "dbar": -0.15797417723847698,
+        "dm_stat": -24.15955432589798,
+        "dm_sin_correccion": -24.168766458376204,
+        "p_value": 1.3115685463602183e-123,
+        "lags": 2,
+        "pesos": "rectangular",
+        "hln_factor": 0.9996188414293261,
+        "veredicto": "DCRNN mejor",
+        "mae_A": 0.6668466925621033,
+        "mae_B": 0.8248208671137215
+      },
+      "ClimaX-SARIMA": {
+        "T": 6559,
+        "dbar": 0.7422605067680923,
+        "dm_stat": 61.05485882148574,
+        "dm_sin_correccion": 61.078139277752264,
+        "p_value": 0.0,
+        "lags": 2,
+        "pesos": "rectangular",
+        "hln_factor": 0.9996188414293261,
+        "veredicto": "SARIMA mejor",
+        "mae_A": 1.567081373881814,
+        "mae_B": 0.8248208671137215
+      }
+    }
+  },
+  "medio": {
+    "horizon": 48,
+    "T_alineado": 1630,
+    "pares": {
+      "DCRNN-ClimaX": {
+        "T": 1630,
+        "dbar": -0.8520738549027707,
+        "dm_stat": -32.108057531843215,
+        "dm_sin_correccion": -33.07180814484147,
+        "p_value": 1.133977113544364e-175,
+        "lags": 47,
+        "pesos": "rectangular",
+        "hln_factor": 0.9708588472460469,
+        "veredicto": "DCRNN mejor",
+        "mae_A": 0.9474343657493591,
+        "mae_B": 1.7995082308178298
+      },
+      "DCRNN-SARIMA": {
+        "T": 1630,
+        "dbar": -0.031108453637805646,
+        "dm_stat": -3.186064705323859,
+        "dm_sin_correccion": -3.281697143062041,
+        "p_value": 0.001469551682205674,
+        "lags": 47,
+        "pesos": "rectangular",
+        "hln_factor": 0.9708588472460469,
+        "veredicto": "DCRNN mejor",
+        "mae_A": 0.9474343657493591,
+        "mae_B": 0.978542829552865
+      },
+      "ClimaX-SARIMA": {
+        "T": 1630,
+        "dbar": 0.820965401264965,
+        "dm_stat": 28.911348195592126,
+        "dm_sin_correccion": 29.77914686321549,
+        "p_value": 1.0575104535013527e-148,
+        "lags": 47,
+        "pesos": "rectangular",
+        "hln_factor": 0.9708588472460469,
+        "veredicto": "SARIMA mejor",
+        "mae_A": 1.7995082308178298,
+        "mae_B": 0.978542829552865
+      }
+    }
+  },
+  "largo": {
+    "horizon": 72,
+    "T_alineado": 811,
+    "pares": {
+      "DCRNN-ClimaX": {
+        "T": 811,
+        "dbar": -0.4632466424408147,
+        "dm_stat": -5.153123356947551,
+        "dm_sin_correccion": -5.651364432389987,
+        "p_value": 3.2207426473120276e-07,
+        "lags": 71,
+        "pesos": "rectangular",
+        "hln_factor": 0.9118370295522197,
+        "veredicto": "DCRNN mejor",
+        "mae_A": 0.7180729508399963,
+        "mae_B": 1.1813196022717296
+      },
+      "DCRNN-SARIMA": {
+        "T": 811,
+        "dbar": 0.03709487577917176,
+        "dm_stat": 6.170417160758326,
+        "dm_sin_correccion": 6.767017527011887,
+        "p_value": 1.0752359555293267e-09,
+        "lags": 71,
+        "pesos": "rectangular",
+        "hln_factor": 0.9118370295522197,
+        "veredicto": "SARIMA mejor",
+        "mae_A": 0.7180729508399963,
+        "mae_B": 0.6809780840517431
+      },
+      "ClimaX-SARIMA": {
+        "T": 811,
+        "dbar": 0.5003415182199864,
+        "dm_stat": 5.470196601370514,
+        "dm_sin_correccion": 5.9990946014298085,
+        "p_value": 5.993489999730017e-08,
+        "lags": 71,
+        "pesos": "rectangular",
+        "hln_factor": 0.9118370295522197,
+        "veredicto": "SARIMA mejor",
+        "mae_A": 1.1813196022717296,
+        "mae_B": 0.6809780840517431
+      }
+    }
+  }
+}

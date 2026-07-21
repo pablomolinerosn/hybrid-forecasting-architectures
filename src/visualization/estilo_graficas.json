@@ -1,0 +1,84 @@
+{
+  "$schema": "estilo visual homologado para las gráficas del TFM (EDA, metodología y resultados)",
+  "descripcion": "Config de estilo 'paper' aplicada en notebooks/eda_mdt.ipynb, notebooks/metodologia_entrenamiento.ipynb y docs/figuras/*. Un solo origen de verdad para no repetir kwargs de matplotlib/seaborn en cada notebook.",
+  "tema_seaborn": {
+    "style": "ticks",
+    "context": "paper",
+    "font_scale": 1.2,
+    "nota": "sns.set_theme(style=style, context=context, font_scale=font_scale) — fondo blanco, sin grid, tamaños reducidos de impresión."
+  },
+  "rcparams": {
+    "font.family": "DejaVu Sans",
+    "figure.dpi": 100,
+    "savefig.dpi": 150,
+    "axes.titleweight": "bold",
+    "axes.titlesize": 11
+  },
+  "paleta_categorica": {
+    "descripcion": "Orden fijo de 8 tonos validados (CVD-safe, ver dataviz skill). Nunca ciclar: asignar siempre en este orden a las categorías (estaciones, modelos, etc.).",
+    "slots": [
+      { "slot": 1, "nombre": "azul",    "hex": "#2a78d6", "uso_actual": "A3T-GCN; nodos del grafo; artefactos/preprocesamiento en el diagrama de pipeline" },
+      { "slot": 2, "nombre": "aqua",    "hex": "#1baf7a", "uso_actual": "Evaluación en el diagrama de pipeline" },
+      { "slot": 3, "nombre": "amarillo","hex": "#eda100", "uso_actual": "sin asignar aún" },
+      { "slot": 4, "nombre": "verde",   "hex": "#008300", "uso_actual": "sin asignar aún" },
+      { "slot": 5, "nombre": "violeta", "hex": "#4a3aa7", "uso_actual": "Definición del grafo en el diagrama de pipeline" },
+      { "slot": 6, "nombre": "rojo",    "hex": "#e34948", "uso_actual": "DCRNN; PACF" },
+      { "slot": 7, "nombre": "magenta", "hex": "#e87ba4", "uso_actual": "sin asignar aún" },
+      { "slot": 8, "nombre": "naranja", "hex": "#eb6834", "uso_actual": "Entrenamiento en el diagrama de pipeline" }
+    ],
+    "gris_neutro": { "nombre": "gris", "hex": "#52514e", "uso_actual": "Dato de entrada (parquet) en el diagrama de pipeline; tinta secundaria" },
+    "mas_de_8_categorias": {
+      "regla": "sns.color_palette('husl', n)",
+      "motivo": "cuando n > 8 (ej. 11 estaciones en eda_mdt.ipynb, base previa al filtrado de data_cleaning.py) no alcanzan los 8 tonos validados; husl da n tonos perceptualmente uniformes en orden estable.",
+      "ejemplo": "COLOR_ESTACION = dict(zip(ESTACIONES, sns.color_palette('husl', len(ESTACIONES))))"
+    }
+  },
+  "paleta_secuencial": {
+    "cmap": "YlOrRd",
+    "uso": "magnitud/porcentaje: heatmaps de datos faltantes, medias mensuales/horarias, cobertura temporal",
+    "regla": "un solo hue, claro→oscuro; nunca rainbow"
+  },
+  "paleta_divergente": {
+    "cmap": "RdBu_r",
+    "centro": 0,
+    "uso": "correlación de Pearson (polaridad con cero significativo)",
+    "regla": "dos hues + punto medio neutro; jamás usar en variables categóricas (ver anti-patrón corregido: boxplots por estación usaban RdBu antes de esta homologación)"
+  },
+  "roles_fijos": {
+    "A3T-GCN": "#2a78d6",
+    "DCRNN": "#e34948",
+    "dato_entrada": "#52514e",
+    "preprocesamiento_artefactos": "#2a78d6",
+    "grafo": "#4a3aa7",
+    "entrenamiento": "#eb6834",
+    "evaluacion": "#1baf7a"
+  },
+  "heatmap_defaults": {
+    "linewidths": 0.4,
+    "linecolor": "white",
+    "annot_kws": { "size": 7 },
+    "cbar_kws": { "shrink": 0.8 },
+    "nota": "annot=True solo si la grilla tiene pocas columnas (ej. 12 meses); con muchas (ej. 24 horas, o meses×años) usar annot=False y dejar que el color transmita la magnitud — evita anotaciones superpuestas/ilegibles."
+  },
+  "ejes": {
+    "spines_ocultos": ["top", "right"],
+    "title_pad": 8,
+    "helper": "limpiar_ejes(ax, xlabel=None, ylabel=None, title=None) — repetida en eda_mdt.ipynb y metodologia_entrenamiento.ipynb; candidata a mover a src/visualization/estilo.py"
+  },
+  "leyendas": {
+    "frameon": false,
+    "fontsize": 8,
+    "regla": "sin caja, tamaño reducido; una sola serie no necesita leyenda (el título ya la nombra)"
+  },
+  "idioma": {
+    "titulos_ejes_leyendas": "español",
+    "nota": "coherente con el TFM; los nombres de columnas del dataset (temperaturaMedia, humedadRelativa, ...) ya vienen en español desde el preprocesamiento."
+  },
+  "figsize_convenciones": {
+    "heatmap_doble_lado_a_lado": [11, 4.5],
+    "grid_variables_3_columnas": "ancho 15, alto = n_filas * 3.2",
+    "serie_temporal_simple": [12, 3.2],
+    "acf_pacf_par": [12, 3.2],
+    "diagrama_red_grafo": [7, 6.5]
+  }
+}

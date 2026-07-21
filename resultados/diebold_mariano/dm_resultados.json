@@ -1,0 +1,296 @@
+{
+  "corto": {
+    "horizon": 3,
+    "mae_global": {
+      "A3T-GCN": 0.7233381867408752,
+      "DCRNN": 0.6572700142860413
+    },
+    "global": {
+      "T": 19678,
+      "dbar": 0.06606807988447,
+      "dm_stat": 20.367332444927367,
+      "dm_sin_correccion": 20.369920356824096,
+      "p_value": 2.8448685259714395e-91,
+      "lags": 2,
+      "pesos": "rectangular",
+      "hln_factor": 0.9998729542457018,
+      "veredicto": "DCRNN mejor"
+    },
+    "por_estacion": {
+      "Belisario": {
+        "T": 19678,
+        "dbar": 0.046111191951086004,
+        "dm_stat": 10.426093998220503,
+        "dm_sin_correccion": 10.427418757501934,
+        "p_value": 2.194889352478644e-25,
+        "lags": 2,
+        "pesos": "rectangular",
+        "hln_factor": 0.9998729542457018,
+        "veredicto": "DCRNN mejor",
+        "mae_A3T": 0.7016048431396484,
+        "mae_DCRNN": 0.6554936170578003
+      },
+      "Carapungo": {
+        "T": 19678,
+        "dbar": 0.09401017483783841,
+        "dm_stat": 16.946056206979343,
+        "dm_sin_correccion": 16.94820940502721,
+        "p_value": 5.8512192209978515e-64,
+        "lags": 2,
+        "pesos": "rectangular",
+        "hln_factor": 0.9998729542457018,
+        "veredicto": "DCRNN mejor",
+        "mae_A3T": 0.7186540961265564,
+        "mae_DCRNN": 0.6246439814567566
+      },
+      "Cotocollao": {
+        "T": 19678,
+        "dbar": 0.03260054313527071,
+        "dm_stat": 7.893519951645036,
+        "dm_sin_correccion": 7.894522917263885,
+        "p_value": 3.0908719368166967e-15,
+        "lags": 2,
+        "pesos": "rectangular",
+        "hln_factor": 0.9998729542457018,
+        "veredicto": "DCRNN mejor",
+        "mae_A3T": 0.6454834938049316,
+        "mae_DCRNN": 0.6128829717636108
+      },
+      "ElCamal": {
+        "T": 19678,
+        "dbar": 0.04924591518851458,
+        "dm_stat": 11.38644843594902,
+        "dm_sin_correccion": 11.387895219687074,
+        "p_value": 6.0621780040891154e-30,
+        "lags": 2,
+        "pesos": "rectangular",
+        "hln_factor": 0.9998729542457018,
+        "veredicto": "DCRNN mejor",
+        "mae_A3T": 0.6535540819168091,
+        "mae_DCRNN": 0.6043082475662231
+      },
+      "LosChillos": {
+        "T": 19678,
+        "dbar": 0.0918194539591311,
+        "dm_stat": 15.445146928493271,
+        "dm_sin_correccion": 15.447109418161029,
+        "p_value": 1.6765419116022969e-53,
+        "lags": 2,
+        "pesos": "rectangular",
+        "hln_factor": 0.9998729542457018,
+        "veredicto": "DCRNN mejor",
+        "mae_A3T": 0.8425336480140686,
+        "mae_DCRNN": 0.750714123249054
+      },
+      "Tumbaco": {
+        "T": 19678,
+        "dbar": 0.08262120067182747,
+        "dm_stat": 16.526278703164483,
+        "dm_sin_correccion": 16.528378563486406,
+        "p_value": 6.1122733587261905e-61,
+        "lags": 2,
+        "pesos": "rectangular",
+        "hln_factor": 0.9998729542457018,
+        "veredicto": "DCRNN mejor",
+        "mae_A3T": 0.7781985402107239,
+        "mae_DCRNN": 0.6955773830413818
+      }
+    }
+  },
+  "medio": {
+    "horizon": 48,
+    "mae_global": {
+      "A3T-GCN": 1.048439621925354,
+      "DCRNN": 1.040083885192871
+    },
+    "global": {
+      "T": 19561,
+      "dbar": 0.008355768192023393,
+      "dm_stat": 1.0286341644797712,
+      "dm_sin_correccion": 1.0311380786631865,
+      "p_value": 0.3036643368622131,
+      "lags": 47,
+      "pesos": "rectangular",
+      "hln_factor": 0.9975716984609262,
+      "veredicto": "equivalentes"
+    },
+    "por_estacion": {
+      "Belisario": {
+        "T": 19561,
+        "dbar": -0.0006034701497366711,
+        "dm_stat": -0.06915867573062758,
+        "dm_sin_correccion": -0.06932702264641928,
+        "p_value": 0.9448640232518577,
+        "lags": 47,
+        "pesos": "rectangular",
+        "hln_factor": 0.9975716984609262,
+        "veredicto": "equivalentes",
+        "mae_A3T": 1.0411990880966187,
+        "mae_DCRNN": 1.0418025255203247
+      },
+      "Carapungo": {
+        "T": 19561,
+        "dbar": 0.029873226057147876,
+        "dm_stat": 2.713624491079567,
+        "dm_sin_correccion": 2.720230029847681,
+        "p_value": 0.00666098384269758,
+        "lags": 47,
+        "pesos": "rectangular",
+        "hln_factor": 0.9975716984609262,
+        "veredicto": "DCRNN mejor",
+        "mae_A3T": 0.9931637048721313,
+        "mae_DCRNN": 0.9632905125617981
+      },
+      "Cotocollao": {
+        "T": 19561,
+        "dbar": 0.0001473842933069349,
+        "dm_stat": 0.01748315116435828,
+        "dm_sin_correccion": 0.0175257088701811,
+        "p_value": 0.9860513525341359,
+        "lags": 47,
+        "pesos": "rectangular",
+        "hln_factor": 0.9975716984609262,
+        "veredicto": "equivalentes",
+        "mae_A3T": 0.9179674386978149,
+        "mae_DCRNN": 0.9178200960159302
+      },
+      "ElCamal": {
+        "T": 19561,
+        "dbar": -9.245789859760613e-05,
+        "dm_stat": -0.010520994455620844,
+        "dm_sin_correccion": -0.010546604792269916,
+        "p_value": 0.991605723121521,
+        "lags": 47,
+        "pesos": "rectangular",
+        "hln_factor": 0.9975716984609262,
+        "veredicto": "equivalentes",
+        "mae_A3T": 0.9528422355651855,
+        "mae_DCRNN": 0.9529346823692322
+      },
+      "LosChillos": {
+        "T": 19561,
+        "dbar": -0.0004225570934571211,
+        "dm_stat": -0.038773246469733166,
+        "dm_sin_correccion": -0.03886762879255026,
+        "p_value": 0.9690715707144808,
+        "lags": 47,
+        "pesos": "rectangular",
+        "hln_factor": 0.9975716984609262,
+        "veredicto": "equivalentes",
+        "mae_A3T": 1.2103248834609985,
+        "mae_DCRNN": 1.210747480392456
+      },
+      "Tumbaco": {
+        "T": 19561,
+        "dbar": 0.021232483973380498,
+        "dm_stat": 2.0406502331976104,
+        "dm_sin_correccion": 2.0456176095873277,
+        "p_value": 0.04129900345477455,
+        "lags": 47,
+        "pesos": "rectangular",
+        "hln_factor": 0.9975716984609262,
+        "veredicto": "DCRNN mejor",
+        "mae_A3T": 1.1751408576965332,
+        "mae_DCRNN": 1.153908371925354
+      }
+    }
+  },
+  "largo": {
+    "horizon": 72,
+    "mae_global": {
+      "A3T-GCN": 1.108525037765503,
+      "DCRNN": 1.0939580202102661
+    },
+    "global": {
+      "T": 19465,
+      "dbar": 0.014567027464873164,
+      "dm_stat": 1.4010398556032624,
+      "dm_sin_correccion": 1.4062052130033846,
+      "p_value": 0.16121809821640504,
+      "lags": 71,
+      "pesos": "rectangular",
+      "hln_factor": 0.9963267399719774,
+      "veredicto": "equivalentes"
+    },
+    "por_estacion": {
+      "Belisario": {
+        "T": 19465,
+        "dbar": 0.021223510459980253,
+        "dm_stat": 1.8217425192706753,
+        "dm_sin_correccion": 1.8284589243503728,
+        "p_value": 0.06850940359923885,
+        "lags": 71,
+        "pesos": "rectangular",
+        "hln_factor": 0.9963267399719774,
+        "veredicto": "equivalentes",
+        "mae_A3T": 1.1049410104751587,
+        "mae_DCRNN": 1.0837175846099854
+      },
+      "Carapungo": {
+        "T": 19465,
+        "dbar": 0.028789244278702733,
+        "dm_stat": 2.100402061115813,
+        "dm_sin_correccion": 2.1081458289224364,
+        "p_value": 0.035706320438250776,
+        "lags": 71,
+        "pesos": "rectangular",
+        "hln_factor": 0.9963267399719774,
+        "veredicto": "DCRNN mejor",
+        "mae_A3T": 1.0557109117507935,
+        "mae_DCRNN": 1.0269217491149902
+      },
+      "Cotocollao": {
+        "T": 19465,
+        "dbar": 0.008450606155297519,
+        "dm_stat": 0.789137452865756,
+        "dm_sin_correccion": 0.7920468468887538,
+        "p_value": 0.4300412860814664,
+        "lags": 71,
+        "pesos": "rectangular",
+        "hln_factor": 0.9963267399719774,
+        "veredicto": "equivalentes",
+        "mae_A3T": 0.9663453698158264,
+        "mae_DCRNN": 0.9578946828842163
+      },
+      "ElCamal": {
+        "T": 19465,
+        "dbar": 0.008255421922410817,
+        "dm_stat": 0.5574795706806779,
+        "dm_sin_correccion": 0.5595348878183852,
+        "p_value": 0.5772062241973649,
+        "lags": 71,
+        "pesos": "rectangular",
+        "hln_factor": 0.9963267399719774,
+        "veredicto": "equivalentes",
+        "mae_A3T": 1.008306622505188,
+        "mae_DCRNN": 1.0000511407852173
+      },
+      "LosChillos": {
+        "T": 19465,
+        "dbar": 0.02543431744304807,
+        "dm_stat": 1.8212097446119995,
+        "dm_sin_correccion": 1.8279241854566932,
+        "p_value": 0.06859032375067116,
+        "lags": 71,
+        "pesos": "rectangular",
+        "hln_factor": 0.9963267399719774,
+        "veredicto": "equivalentes",
+        "mae_A3T": 1.292594075202942,
+        "mae_DCRNN": 1.2671597003936768
+      },
+      "Tumbaco": {
+        "T": 19465,
+        "dbar": -0.004750934995724247,
+        "dm_stat": -0.4007102092416396,
+        "dm_sin_correccion": -0.4021875486880036,
+        "p_value": 0.6886378916446878,
+        "lags": 71,
+        "pesos": "rectangular",
+        "hln_factor": 0.9963267399719774,
+        "veredicto": "equivalentes",
+        "mae_A3T": 1.223252534866333,
+        "mae_DCRNN": 1.2280036211013794
+      }
+    }
+  }
+}

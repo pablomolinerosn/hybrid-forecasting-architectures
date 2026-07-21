@@ -1,0 +1,7 @@
+{
+    "scenario": "medio_plazo",
+    "best_val_rmse": 0.31215070543223866,
+    "epochs_executed": 100,
+    "batch_size": 64,
+    "learning_rate": 1.0376741218161725e-05
+}

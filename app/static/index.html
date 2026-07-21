@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistema de Alerta Temprana - Distrito Metropolitano de Quito</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌡️</text></svg>">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="shell">
+    <aside class="rail">
+      <div class="rail-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M14 14.76V4a2 2 0 0 0-4 0v10.76a4 4 0 1 0 4 0Z" />
+          <path d="M12 9v6" />
+        </svg>
+      </div>
+      <nav class="rail-nav">
+        <a class="rail-item active" href="#resumen" data-section="resumen">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 18a4 4 0 1 1 .9-7.9 5 5 0 0 1 9.6 1.9A3.5 3.5 0 0 1 17 18H7Z" />
+            </svg></span>
+          <span class="lbl">Resumen</span>
+        </a>
+        <a class="rail-item" href="#mapa" data-section="mapa">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z" />
+              <circle cx="12" cy="9" r="2.3" />
+            </svg></span>
+          <span class="lbl">Mapa</span>
+        </a>
+        <a class="rail-item" href="#alertas" data-section="alertas">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h9M17 6h3M4 18h3M11 18h9" />
+              <circle cx="15" cy="6" r="2" />
+              <circle cx="7" cy="18" r="2" />
+            </svg></span>
+          <span class="lbl">Umbrales</span>
+        </a>
+        <a class="rail-item" href="#historico" data-section="historico">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 17l5-5 4 4 8-9" />
+              <path d="M15 7h5v5" />
+            </svg></span>
+          <span class="lbl">Histórico</span>
+        </a>
+        <a class="rail-item" href="#modelo" data-section="modelo">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 11v5.5M12 7.6v.1" />
+            </svg></span>
+          <span class="lbl">Modelo</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="brand"> Sistema de Alerta Temprana <span> Distrito Metropolitano de Quito </span></div>
+        <div class="topbar-right">
+          <button class="theme-toggle" id="theme-toggle" type="button">
+            <span class="ico" id="theme-icon"></span>
+            <span id="theme-label">Modo oscuro</span>
+          </button>
+          <div class="credit"> Modelos Integrados de Forecasting </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <span class="scenario-pill" id="scenario-pill">Predicción: Corto plazo (+3 h)</span>
+        <nav class="tabs">
+          <a class="tab active" href="#resumen">Resumen</a>
+          <a class="tab" href="#mapa">Mapa</a>
+          <a class="tab" href="#estaciones">Por estación</a>
+          <a class="tab" href="#historico">Histórico</a>
+        </nav>
+      </div>
+
+      <section id="resumen">
+        <div class="subhead">
+          <h1 id="subhead-title">Cargando modelo…</h1>
+          <div class="note">Inferencia en vivo del checkpoint DCRNN sobre datos del split de test, fuera de
+            entrenamiento.</div>
+        </div>
+
+        <div class="time-controls">
+          <label class="field field-escenario">
+            <span class="field-lbl">Horizonte de pronóstico</span>
+            <select id="input-escenario">
+              <option value="corto">Corto plazo → +3 h</option>
+              <option value="medio">Medio plazo → +48 h</option>
+              <option value="largo">Largo plazo → +72 h</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field-lbl">Hora actual</span>
+            <input type="date" id="input-fecha">
+          </label>
+          <label class="field field-hora">
+            <span class="field-lbl">Hora del día - <b id="hora-val">—</b></span>
+            <input type="range" id="input-hora" min="0" max="23" step="1" value="12">
+          </label>
+          <span class="hint" id="rango-hint"></span>
+        </div>
+
+        <div id="alert-banner" class="alert-banner">Cargando…</div>
+      </section>
+
+      <div class="mapband" id="mapa">
+        <span class="map-badge">Ahora</span>
+        <span class="map-caption">Red de estaciones REMMAQ · Distrito Metropolitano de Quito · OpenStreetMap</span>
+        <div id="map"></div>
+      </div>
+
+      <div class="layout">
+        <section id="estaciones">
+          <h2 class="section-label">Pronóstico por estación</h2>
+          <div class="row-head">
+            <span>Estación</span>
+            <span>Predicho</span>
+            <span>Estado</span>
+            <span>Error MAE histórico</span>
+            <span id="col-real-head">Real (+3h)</span>
+            <span></span>
+          </div>
+          <ul class="rows" id="rows-container"></ul>
+        </section>
+
+        <aside class="side">
+          <div class="card" id="alertas">
+            <h2>Estado de alertas</h2>
+            <div class="gauge-row">
+              <div class="gauge" id="gauge"><span id="gauge-num">–</span></div>
+              <div class="gauge-copy">
+                <strong id="gauge-title">—</strong>
+                <p id="gauge-desc">Cargando estado…</p>
+              </div>
+            </div>
+            <div class="threshold-controls">
+              <label class="field">
+                <span class="field-lbl">Frío (°C) — <b id="frio-val">—</b></span>
+                <input type="range" id="input-frio" min="-5" max="25" step="0.5">
+              </label>
+              <label class="field">
+                <span class="field-lbl">Calor (°C) — <b id="calor-val">—</b></span>
+                <input type="range" id="input-calor" min="-5" max="30" step="0.5">
+              </label>
+              <p class="note small">
+                Por defecto, percentiles p5/p95 de la temperatura observada en el
+                split de test.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="historico">
+        <h2 class="section-label">Temperatura por estación</h2>
+        <label class="field field-inline">
+          <span class="field-lbl">Estación</span>
+          <select id="input-estacion"></select>
+        </label>
+        <div class="chart-card">
+          <canvas id="trace-canvas"></canvas>
+          <div class="trace-tooltip" id="trace-tooltip"></div>
+        </div>
+        <p class="note small" id="historico-note">
+          Línea: temperatura observada (últimas 24h, entrada del modelo). Punto
+          rojo: predicción del DCRNN a 3h del último dato observado, comparable
+          contra el valor real porque el dato es histórico (test). Pasa el mouse
+          sobre la serie para ver el valor exacto de cada hora.
+        </p>
+      </section>
+
+      <section id="modelo" class="model-section">
+        <h2 class="section-label">Modelo</h2>
+        <div class="model-grid">
+          <div class="card">
+            <h2>Acerca del modelo</h2>
+            <p class="methodology" id="methodology"></p>
+            <ul class="about-list" id="about-list"></ul>
+          </div>
+          <div class="card">
+            <h2>Desempeño del modelo (test)</h2>
+            <ul class="stat-list" id="stat-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Predicción espaciotemporal de temperatura · Datos REMMAQ,
+        Distrito Metropolitano de Quito · API FastAPI
+      </footer>
+    </main>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

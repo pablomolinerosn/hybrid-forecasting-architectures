@@ -1,0 +1,405 @@
+{
+  "archivo": "data/processed/mdt_feature_store_2008.parquet",
+  "timestamp": "2026-07-02 20:00:17.784496",
+  "n_filas": 959760,
+  "n_columnas": 23,
+  "memoria_mb": 146.8,
+  "formato": "largo (tidy: fila por tiempo-estacion)",
+  "col_tiempo": "fechaHora",
+  "col_estacion": "estacion",
+  "columnas": {
+    "fechaHora": "datetime64[ns]",
+    "estacion": "category",
+    "fecha": "object",
+    "hora": "int32",
+    "humedadRelativa": "float32",
+    "precipitacion": "float32",
+    "presionBarometrica": "float32",
+    "radiacionSolar": "float32",
+    "temperaturaMedia": "float32",
+    "mes": "int32",
+    "anio": "int32",
+    "dia_semana": "int32",
+    "viento_u": "float32",
+    "viento_v": "float32",
+    "precipitacion_log": "float32",
+    "hora_sin": "float64",
+    "hora_cos": "float64",
+    "mes_sin": "float64",
+    "mes_cos": "float64",
+    "dia_semana_sin": "float64",
+    "dia_semana_cos": "float64",
+    "radiacionSolar_lag1": "float32",
+    "radiacionSolar_lag2": "float32"
+  },
+  "temporal": {
+    "rango": [
+      "2008-01-01 00:00:00",
+      "2026-03-31 23:00:00"
+    ],
+    "fechas_nat": 0,
+    "por_estacion": {
+      "Belisario": {
+        "n": 159960,
+        "inicio": "2008-01-01 00:00:00",
+        "fin": "2026-03-31 23:00:00",
+        "duplicados": 0,
+        "gaps_mayores_1h": 0,
+        "paso_mediano": "0 days 01:00:00"
+      },
+      "Carapungo": {
+        "n": 159960,
+        "inicio": "2008-01-01 00:00:00",
+        "fin": "2026-03-31 23:00:00",
+        "duplicados": 0,
+        "gaps_mayores_1h": 0,
+        "paso_mediano": "0 days 01:00:00"
+      },
+      "Cotocollao": {
+        "n": 159960,
+        "inicio": "2008-01-01 00:00:00",
+        "fin": "2026-03-31 23:00:00",
+        "duplicados": 0,
+        "gaps_mayores_1h": 0,
+        "paso_mediano": "0 days 01:00:00"
+      },
+      "ElCamal": {
+        "n": 159960,
+        "inicio": "2008-01-01 00:00:00",
+        "fin": "2026-03-31 23:00:00",
+        "duplicados": 0,
+        "gaps_mayores_1h": 0,
+        "paso_mediano": "0 days 01:00:00"
+      },
+      "LosChillos": {
+        "n": 159960,
+        "inicio": "2008-01-01 00:00:00",
+        "fin": "2026-03-31 23:00:00",
+        "duplicados": 0,
+        "gaps_mayores_1h": 0,
+        "paso_mediano": "0 days 01:00:00"
+      },
+      "Tumbaco": {
+        "n": 159960,
+        "inicio": "2008-01-01 00:00:00",
+        "fin": "2026-03-31 23:00:00",
+        "duplicados": 0,
+        "gaps_mayores_1h": 0,
+        "paso_mediano": "0 days 01:00:00"
+      }
+    },
+    "estaciones_alineadas": true
+  },
+  "variables": {
+    "n_numericas": 20,
+    "target_presente": true,
+    "ciclicas": [
+      "hora_sin",
+      "hora_cos",
+      "mes_sin",
+      "mes_cos",
+      "dia_semana_sin",
+      "dia_semana_cos"
+    ],
+    "climaticas": [
+      "hora",
+      "humedadRelativa",
+      "precipitacion",
+      "presionBarometrica",
+      "radiacionSolar",
+      "temperaturaMedia",
+      "mes",
+      "anio",
+      "dia_semana",
+      "viento_u",
+      "viento_v",
+      "precipitacion_log",
+      "radiacionSolar_lag1",
+      "radiacionSolar_lag2"
+    ],
+    "ciclicas_fuera_rango": {},
+    "parece_normalizada": false,
+    "descriptivos": {
+      "hora": {
+        "mean": 11.5,
+        "std": 6.9222,
+        "min": 0.0,
+        "25%": 5.75,
+        "50%": 11.5,
+        "75%": 17.25,
+        "max": 23.0
+      },
+      "humedadRelativa": {
+        "mean": 70.577,
+        "std": 19.3572,
+        "min": 0.99,
+        "25%": 55.04,
+        "50%": 73.55,
+        "75%": 88.16,
+        "max": 100.0
+      },
+      "precipitacion": {
+        "mean": 0.1254,
+        "std": 0.9134,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 0.0,
+        "max": 55.9
+      },
+      "presionBarometrica": {
+        "mean": 742.6505,
+        "std": 17.3829,
+        "min": 717.92,
+        "25%": 726.82,
+        "50%": 737.025,
+        "75%": 759.62,
+        "max": 779.46
+      },
+      "radiacionSolar": {
+        "mean": 212.735,
+        "std": 307.0021,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 6.25,
+        "75%": 389.31,
+        "max": 1333.78
+      },
+      "temperaturaMedia": {
+        "mean": 15.0013,
+        "std": 3.577,
+        "min": 0.65,
+        "25%": 12.17,
+        "50%": 14.13,
+        "75%": 17.6,
+        "max": 28.85
+      },
+      "mes": {
+        "mean": 6.4615,
+        "std": 3.4663,
+        "min": 1.0,
+        "25%": 3.0,
+        "50%": 6.0,
+        "75%": 9.0,
+        "max": 12.0
+      },
+      "anio": {
+        "mean": 2016.6279,
+        "std": 5.2687,
+        "min": 2008.0,
+        "25%": 2012.0,
+        "50%": 2017.0,
+        "75%": 2021.0,
+        "max": 2026.0
+      },
+      "dia_semana": {
+        "mean": 2.9997,
+        "std": 2.0,
+        "min": 0.0,
+        "25%": 1.0,
+        "50%": 3.0,
+        "75%": 5.0,
+        "max": 6.0
+      },
+      "viento_u": {
+        "mean": 0.2312,
+        "std": 1.3872,
+        "min": -8.477,
+        "25%": -0.5993,
+        "50%": 0.1678,
+        "75%": 1.0403,
+        "max": 7.4954
+      },
+      "viento_v": {
+        "mean": 0.2486,
+        "std": 1.2648,
+        "min": -9.5692,
+        "25%": -0.4303,
+        "50%": 0.2116,
+        "75%": 0.8437,
+        "max": 8.3669
+      },
+      "precipitacion_log": {
+        "mean": 0.0559,
+        "std": 0.251,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 0.0,
+        "max": 4.0413
+      },
+      "hora_sin": {
+        "mean": 0.0,
+        "std": 0.7071,
+        "min": -1.0,
+        "25%": -0.7071,
+        "50%": 0.0,
+        "75%": 0.7071,
+        "max": 1.0
+      },
+      "hora_cos": {
+        "mean": 0.0,
+        "std": 0.7071,
+        "min": -1.0,
+        "25%": -0.7071,
+        "50%": 0.0,
+        "75%": 0.7071,
+        "max": 1.0
+      },
+      "mes_sin": {
+        "mean": 0.006,
+        "std": 0.7073,
+        "min": -1.0,
+        "25%": -0.5,
+        "50%": 0.0,
+        "75%": 0.5,
+        "max": 1.0
+      },
+      "mes_cos": {
+        "mean": 0.0042,
+        "std": 0.7068,
+        "min": -1.0,
+        "25%": -0.5,
+        "50%": 0.0,
+        "75%": 0.866,
+        "max": 1.0
+      },
+      "dia_semana_sin": {
+        "mean": 0.0001,
+        "std": 0.7071,
+        "min": -0.9749,
+        "25%": -0.7818,
+        "50%": 0.0,
+        "75%": 0.7818,
+        "max": 0.9749
+      },
+      "dia_semana_cos": {
+        "mean": 0.0001,
+        "std": 0.7071,
+        "min": -0.901,
+        "25%": -0.901,
+        "50%": -0.2225,
+        "75%": 0.6235,
+        "max": 1.0
+      },
+      "radiacionSolar_lag1": {
+        "mean": 212.735,
+        "std": 307.0021,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 6.25,
+        "75%": 389.31,
+        "max": 1333.78
+      },
+      "radiacionSolar_lag2": {
+        "mean": 212.735,
+        "std": 307.0021,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 6.25,
+        "75%": 389.31,
+        "max": 1333.78
+      }
+    }
+  },
+  "nulos": {
+    "por_columna": {},
+    "pct_por_estacion": {
+      "Belisario": 0.0,
+      "Carapungo": 0.0,
+      "Cotocollao": 0.0,
+      "ElCamal": 0.0,
+      "LosChillos": 0.0,
+      "Tumbaco": 0.0
+    },
+    "columnas_mascara": []
+  },
+  "inconsistencias": {
+    "duplicados_clave": 0,
+    "columnas_constantes": [],
+    "chequeos_fisicos": {
+      "humedadRelativa": {
+        "rango": [
+          0.0,
+          100.0
+        ],
+        "fuera": 0
+      },
+      "precipitacion": {
+        "rango": [
+          0.0,
+          200.0
+        ],
+        "fuera": 0
+      },
+      "presionBarometrica": {
+        "rango": [
+          68.0,
+          76.0
+        ],
+        "fuera": 959760
+      },
+      "radiacionSolar": {
+        "rango": [
+          0.0,
+          1500.0
+        ],
+        "fuera": 0
+      },
+      "temperaturaMedia": {
+        "rango": [
+          -5.0,
+          35.0
+        ],
+        "fuera": 0
+      },
+      "viento_u": {
+        "rango": [
+          0.0,
+          40.0
+        ],
+        "fuera": 430774
+      },
+      "viento_v": {
+        "rango": [
+          0.0,
+          40.0
+        ],
+        "fuera": 392849
+      },
+      "precipitacion_log": {
+        "rango": [
+          0.0,
+          200.0
+        ],
+        "fuera": 0
+      },
+      "radiacionSolar_lag1": {
+        "rango": [
+          0.0,
+          1500.0
+        ],
+        "fuera": 0
+      },
+      "radiacionSolar_lag2": {
+        "rango": [
+          0.0,
+          1500.0
+        ],
+        "fuera": 0
+      }
+    }
+  },
+  "aptitud": {
+    "estaciones_presentes": [
+      "Belisario",
+      "Carapungo",
+      "Cotocollao",
+      "ElCamal",
+      "LosChillos",
+      "Tumbaco"
+    ],
+    "n_features": 20,
+    "target_idx_actual": 5
+  }
+}

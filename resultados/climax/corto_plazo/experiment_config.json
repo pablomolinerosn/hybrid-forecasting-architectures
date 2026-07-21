@@ -1,0 +1,28 @@
+{
+    "scenario": "corto_plazo",
+    "seq_len": 24,
+    "pred_len": 3,
+    "batch_size": 96,
+    "learning_rate": 1.0376741218161725e-05,
+    "epochs_max": 30,
+    "epochs_executed": 30,
+    "best_val_rmse": 0.29579947443857585,
+    "patience": 10,
+    "min_delta": 0.001,
+    "embed_dim": 1024,
+    "patch_size": 2,
+    "variables": [
+        "temperaturaMedia",
+        "humedadRelativa",
+        "presionBarometrica",
+        "precipitacion",
+        "radiacionSolar",
+        "viento_u",
+        "viento_v"
+    ],
+    "training_date": "2026-07-05 01:11:44",
+    "hyperparameters": {
+        "lr": 1.0376741218161725e-05,
+        "batch_size": 16
+    }
+}

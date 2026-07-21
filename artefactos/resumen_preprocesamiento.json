@@ -1,0 +1,59 @@
+{
+  "n_filas_parquet": 959760,
+  "tensor_shape": [
+    159960,
+    6,
+    14
+  ],
+  "feature_order": [
+    "temperaturaMedia",
+    "humedadRelativa",
+    "presionBarometrica",
+    "radiacionSolar",
+    "viento_u",
+    "viento_v",
+    "precipitacion_log",
+    "radiacionSolar_lag1",
+    "hora_sin",
+    "hora_cos",
+    "mes_sin",
+    "mes_cos",
+    "dia_semana_sin",
+    "dia_semana_cos"
+  ],
+  "target": "temperaturaMedia",
+  "target_idx": 0,
+  "station_order": [
+    "Belisario",
+    "Carapungo",
+    "Cotocollao",
+    "ElCamal",
+    "LosChillos",
+    "Tumbaco"
+  ],
+  "splits_idx": {
+    "train": [
+      0,
+      122736
+    ],
+    "val": [
+      122736,
+      140256
+    ],
+    "test": [
+      140256,
+      159960
+    ]
+  },
+  "sigma_km": 13.09573219318062,
+  "coords_oficiales": false,
+  "descartadas": [
+    "hora",
+    "mes",
+    "dia_semana",
+    "anio",
+    "precipitacion",
+    "radiacionSolar_lag2",
+    "fecha"
+  ]
+}

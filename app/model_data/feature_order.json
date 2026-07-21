@@ -1,0 +1,16 @@
+[
+  "temperaturaMedia",
+  "humedadRelativa",
+  "presionBarometrica",
+  "radiacionSolar",
+  "viento_u",
+  "viento_v",
+  "precipitacion_log",
+  "radiacionSolar_lag1",
+  "hora_sin",
+  "hora_cos",
+  "mes_sin",
+  "mes_cos",
+  "dia_semana_sin",
+  "dia_semana_cos"
+]

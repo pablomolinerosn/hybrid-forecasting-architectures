@@ -1,0 +1,59 @@
+# Entornos / dependencias (cualquier variante, en cualquier profundidad)
+.venv/
+venv/
+env/
+ENV/
+.conda/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor / OS
+.vscode/
+.claude/
+*:Zone.Identifier
+.DS_Store
+
+# --- Datos y artefactos pesados (se regeneran con el pipeline en src/) ---
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*.parquet
+
+artefactos/*.npy
+artefactos/*.csv
+
+# Checkpoints y arrays de resultados
+resultados/**/*.pt
+resultados/**/*.npy
+resultados/**/*.pkl
+
+# Predicciones ARIMA (walk-forward, regenerables localmente con
+# src/models/arima/, pesadas). Las de resultados/climax/predicciones/ SÍ se
+# versionan: son pequeñas y solo se pueden regenerar en Colab (GPU + ClimaX).
+resultados/arima/predicciones/*.parquet
+
+# Salidas de datos que no deben vivir en src/ (deben regenerarse con los
+# scripts hacia resultados/, nunca commitearse desde el código fuente).
+src/**/*.parquet
+src/**/*.pkl
+
+# Figuras/mapas en alta resolución (pesadas, regenerables con src/visualization)
+resultados/figuras/mapas/
+
+# Resultados exploratorios legacy (no forman parte del pipeline final)
+resultados/exploratorio_legacy/
+
+# Papers de terceros (derechos de autor); se conservan los resúmenes .md propios
+revision_literatura/*.pdf
+
+# Notebooks: no versionar checkpoints/artefactos que a veces se guardan ahí
+notebooks/*.pt
+notebooks/*.npy
+notebooks/*.pkl
+
+# Carpeta de revisión de literatura (no versionar PDFs de terceros, solo resúmenes .md)
+revision_literatura/

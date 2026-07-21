@@ -1,0 +1,8 @@
+{
+    "best_params": {
+        "lr": 1.0376741218161725e-05,
+        "batch_size": 16
+    },
+    "best_value": 0.15898244082927704,
+    "description": "Hyperparameters obtained with Optuna and used as the default configuration for training the ClimaX models in the short-, medium-, and long-term forecasting scenarios."
+}

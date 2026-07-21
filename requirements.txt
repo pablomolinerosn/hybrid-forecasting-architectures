@@ -1,0 +1,44 @@
+# Dependencias curadas a partir de los imports reales en src/, notebooks/ y
+# app/ (no es un `pip freeze` completo del entorno). Versiones fijadas a las
+# instaladas en el .venv del proyecto. app/ tiene su propio requirements.txt
+# (variante CPU-only para el contenedor de despliegue).
+
+# Datos / cómputo
+numpy==1.26.4
+pandas==2.3.3
+scipy==1.15.3
+openpyxl==3.1.5           # lectura de data/raw/*.xlsx (REMMAQ)
+requests==2.25.1          # src/data/fetch_data.py
+pyarrow==24.0.0            # lectura/escritura de parquet
+rarfile==4.2                # src/data/fetch_data.py (+ binario `unrar` del sistema)
+
+# Modelos estadísticos clásicos (src/models/arima/)
+statsmodels==0.14.6
+scikit-learn==1.7.2
+joblib==1.5.3
+tqdm==4.68.3
+
+# Deep learning / grafos (src/models/a3tgcn/, src/models/dcrnn/)
+torch==2.1.2+cu121
+torch_geometric==2.3.1
+torch_geometric_temporal==0.54.0
+torch-scatter==2.1.2+pt21cu121
+torch-sparse==0.6.18+pt21cu121
+networkx==3.4.2
+
+# Visualización
+matplotlib==3.10.9
+seaborn==0.13.2
+graphviz==0.21              # src/utils/estilos_diagramas.ipynb, diagramas de docs/figuras/ (+ binario `dot` del sistema)
+
+# Mapas (src/visualization/mapa_quito_paper.py, mapa_estaciones_pines.py)
+geopandas==1.1.4
+pyproj==3.7.1
+contextily==1.7.0
+xyzservices==2026.3.0
+
+# Ejecución headless de notebooks (usado para regenerar notebooks/*.ipynb
+# programáticamente con nbclient.NotebookClient)
+nbformat==5.10.4
+nbclient==0.11.0
+ipykernel==7.3.0
