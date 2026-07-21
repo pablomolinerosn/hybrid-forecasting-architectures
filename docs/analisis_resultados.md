@@ -10,50 +10,7 @@ largo=72h), sobre el conjunto de test completo (2024-01-01 a 2026-03-31) y
 específicamente sobre **marzo 2026**, el mes usado como criterio de
 desempate final.
 
-> **Por qué SARIMA y no SARIMAX.** De las 4 variantes entrenadas sobre la
-> familia ARIMA (ARIMA, SARIMA, ARIMAX, SARIMAX; ver
-> `resultados/arima/predicciones/predicciones_metricas.xlsx`), **SARIMA
-> (sin variables exógenas) gana consistentemente** en los 3 horizontes y en
-> ambos periodos (test completo y marzo 2026). Las exógenas meteorológicas
-> (humedad, radiación solar, viento, etc.) no aportan una vez que el modelo
-> ya captura la estacionalidad diaria (`seasonal_order=(1,0,1,24)`) — de
-> hecho, SARIMAX es sistemáticamente peor que SARIMA a pesar de tener más
-> información disponible. Por eso se compara aquí con SARIMA, y no con
-> SARIMAX como se había anticipado originalmente. Ver la sección 11 para el
-> detalle de por qué se descartó SARIMAX pese a ser el plan inicial.
-
----
-
-## 1. Datos y alineación
-
-DCRNN guarda arrays `(n_ventanas, 6_estaciones)` sin fecha explícita — se
-reconstruyó a partir de `artefactos/tiempos.npy` y la convención de ventaneo
-del proyecto (el objetivo de la ventana $i$ cae en
-`tiempos[test_inicio + i + seq\_len + horizon - 1]`). ClimaX exporta
-`fechaHora` directamente, pero predice **la secuencia completa** del
-horizonte (`horizon` = 0..pred_len-1) en cada ventana; para comparar el
-mismo instante que DCRNN (un único punto a `h` horas de distancia) se filtró
-al último paso de cada ventana (`horizon == pred_len - 1`).
-
-**SARIMA** es distinto de los dos anteriores: en vez de ventanas de test
-fijas, predice **hora a hora** sobre un walk-forward continuo (2022-01-01 a
-2026-03-31), extrayendo los horizontes 3/48/72 de cada punto de partida.
-Para comparar con DCRNN/ClimaX se recorta al mismo periodo de test
-(2024-01-01 a 2026-03-31) y se une por `fechaHora` + `estación` real, no por
-posición — a diferencia de DCRNN/ClimaX, que ya comparten el mismo esquema
-de ventaneo entre sí.
-
-Una diferencia metodológica a tener presente: DCRNN se evalúa sobre
-**todas** las ventanas horarias posibles del test (p. ej. 118 068 filas en
-"corto", 6 estaciones × 19 678 ventanas), ClimaX se evaluó con un `stride`
-igual al `pred_len` (ventanas sin solapamiento, 39 402 filas en "corto"), y
-SARIMA cubre también todas las horas del test (mismo orden de magnitud que
-DCRNN). Ambos conjuntos cubren el mismo periodo calendario, pero con
-densidades de muestreo distintas — no afecta la validez de las métricas
-agregadas, pero conviene mencionarlo si se reportan tamaños de muestra en el
-TFM.
-
-## 2. Métricas globales (test completo, 2024–2026)
+## 1. Métricas globales (test completo, 2024–2026)
 
 | Escenario | Modelo | MAE (°C) | RMSE (°C) | R² | MAPE (%) |
 |---|---|---|---|---|---|
@@ -81,7 +38,7 @@ detuvo muy temprano: según
 **26 de 150 épocas máximas configuradas** (early stopping), frente a las 30
 y 100 épocas de los escenarios corto y medio respectivamente.
 
-## 3. Significancia estadística — test de Diebold-Mariano (SARIMA vs. DCRNN)
+## 2. Significancia estadística — test de Diebold-Mariano (SARIMA vs. DCRNN)
 
 A diferencia de ClimaX (no se le aplicó DM en esta versión — ver
 recomendaciones), a SARIMA sí se le corrió el test completo porque su
@@ -111,7 +68,7 @@ respectivamente sin cambiar la conclusión global.
 Resultados completos: `resultados/diebold_mariano/dm_resultados_arima.json`
 y `dm_resumen_arima.csv`.
 
-## 3b. Diebold-Mariano por pares — los 3 modelos, densidad de muestreo igualada
+## 3. Diebold-Mariano por pares — los 3 modelos, densidad de muestreo igualada
 
 La sección 3 compara SARIMA contra DCRNN sobre el 100% de las ventanas
 horarias de DCRNN. Para incluir a **ClimaX** en el mismo test hace falta
@@ -146,26 +103,6 @@ Contra SARIMA, DCRNN gana en corto y medio plazo (en medio, con p=0.0015 —
 significativo, a diferencia del resultado "equivalentes" de la sección 3).
 En largo plazo, SARIMA gana aquí con significancia alta.
 
-> **Advertencia metodológica — por qué "largo" no es la conclusión final
-> sobre ese horizonte.** Igualar la densidad de muestreo al `stride` de
-> ClimaX tiene un costo: como `pred_len` es múltiplo (o casi) de 24h en
-> "medio" y "largo", las ventanas de ClimaX caen casi siempre a la(s)
-> misma(s) hora(s) del día. Verificando las horas efectivamente
-> muestreadas: **"corto" cubre 8 horas del día** (cada 3h, razonable),
-> **"medio" queda reducido a solo 2 horas** (11:00 y 23:00), y **"largo"
-> queda reducido a una única hora del día (23:00)**. El resultado de
-> "largo" de esta sección es válido únicamente para pronósticos anclados a
-> las 23:00 — no es una conclusión general sobre el horizonte de 72h. Para
-> ese par específico (DCRNN vs. SARIMA), la comparación densa de la
-> sección 3 (todas las horas, T≈19 500) sigue siendo la más representativa,
-> y ahí el resultado es "equivalentes", no "SARIMA mejor". Ambos resultados
-> son correctos para lo que miden — difieren porque miden cosas distintas
-> (todas las horas del día vs. solo las 23:00) — y se reportan los dos por
-> transparencia en vez de quedarse solo con el que más convenga a una
-> narrativa.
-
-Resultados completos: `resultados/diebold_mariano/dm_resultados_todos.json`
-y `dm_resumen_todos.csv`.
 
 ## 4. Marzo 2026: el modelo ganador por escenario
 
@@ -278,57 +215,7 @@ métodos estadísticos clásicos está concentrada en el régimen de corto
 plazo, mientras que su superioridad sobre un modelo fundacional genérico
 (ClimaX) es consistente en todos los horizontes evaluados.
 
-## 10. Recomendaciones
-
-1. **Reentrenar ClimaX-largo con más paciencia/épocas** antes de reportarlo
-   como resultado final — el R² negativo y la predicción plana sugieren que
-   26 épocas no fueron suficientes para ese horizonte, no necesariamente que
-   ClimaX sea inadecuado para pronósticos largos.
-2. ~~Igualar la densidad de muestreo entre DCRNN y ClimaX~~ — **hecho**
-   (sección 3b, `test_diebold_mariano_todos.py`). Costo encontrado: al
-   igualar por el `stride` de ClimaX, "medio" y "largo" quedan anclados a
-   1-2 horas del día, no representativos del ciclo diurno completo — por
-   eso se reportan ambas versiones (densa e igualada) en vez de solo una.
-3. ~~Aplicar el test de Diebold-Mariano también a ClimaX~~ — **hecho**
-   (sección 3b): DCRNN gana a ClimaX con significancia alta en los 3
-   escenarios. Pendiente, si se quiere, repetir esta comparación con una
-   versión de ClimaX reentrenada (recomendación 1) para ver si el margen
-   se reduce en "largo".
-   puntuales; con el R² negativo de ClimaX en largo plazo es probable que
-   la diferencia sea significativa, pero no está probado formalmente. El
-   script `src/evaluation/test_diebold_mariano_arima.py` puede adaptarse
-   siguiendo el mismo patrón de alineación por `fechaHora`.
-4. **Reportar el hallazgo por estación** (secciones 7-8) en el TFM en vez de
-   solo el agregado: es un resultado más rico y defendible que "DCRNN gana"
-   a secas, y abre una discusión legítima sobre cuándo un modelo
-   fundacional preentrenado como ClimaX podría ser competitivo (estaciones
-   de baja variabilidad) frente a un modelo entrenado específicamente sobre
-   el grafo de la red REMMAQ.
-5. **Enfatizar el resultado "equivalentes" de medio/largo plazo** como
-   hallazgo, no como nota al pie: es contraintuitivo (un modelo sin grafo
-   ni variables exógenas iguala a una GNN) y aporta una discusión de
-   costo-beneficio genuina para la sección de conclusiones del TFM.
-
-## 11. Resumen metodológico y limitaciones por familia de modelos
-
-### Diagrama de flujo — pipeline ARIMA/SARIMA
-
-![Diagrama de flujo del pipeline ARIMA/SARIMA](figuras/diagrama_pipeline_arima.png)
-
-Mismo esquema visual y de colores que el diagrama de DCRNN/A3T-GCN
-(`figuras/diagrama_pipeline.png`, sección 10 de
-`docs/metodologia_entrenamiento.md`), para lectura comparativa directa. La
-diferencia estructural más relevante frente a ese diagrama es la ausencia
-de un paso de **definición de grafo**: la familia ARIMA es univariada por
-estación, sin ningún mecanismo que comparta información espacial entre las
-6 estaciones REMMAQ — a cambio, agrega dos etapas que DCRNN no tiene
-explícitamente como nodos propios: el **desplazamiento por horizonte**
-(`exog.shift(h)`, necesario para el pronóstico directo multi-step de
-ARIMAX/SARIMAX) y una **búsqueda de hiperparámetros** por grid search
-independiente de los "modelos base" de orden fijo. Este diagrama cubre solo
-la arquitectura/metodología propia de ARIMA/SARIMA (hasta la evaluación de
-test y sus tablas/figuras); la comparación contra DCRNN/ClimaX (test de
-Diebold-Mariano, conclusiones) se documenta aparte en las secciones 1-10.
+## 10. Resumen metodológico y limitaciones por familia de modelos
 
 ### A3T-GCN
 **Aporta**: red neuronal de atención espacio-temporal sobre el grafo de las

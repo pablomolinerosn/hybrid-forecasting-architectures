@@ -30,9 +30,7 @@ es uniforme en todos los horizontes. Detalle completo en
 3. [Cómo reproducir el pipeline completo](#cómo-reproducir-el-pipeline-completo)
 4. [Metodología por familia de modelos](#metodología-por-familia-de-modelos)
 5. [Resultados](#resultados)
-6. [Notas metodológicas y limitaciones conocidas](#notas-metodológicas-y-limitaciones-conocidas)
-7. [Aplicación de demostración](#aplicación-de-demostración)
-8. [Datos y artefactos pesados](#datos-y-artefactos-pesados)
+6. [Aplicación de demostración](#aplicación-de-demostración)
 
 ---
 
